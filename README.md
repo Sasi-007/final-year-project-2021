@@ -1,4 +1,4 @@
-# final-year-project-2021
+# Final-Year-Project-2021
 
 # Hosted at
 
