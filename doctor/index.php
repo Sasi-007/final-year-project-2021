@@ -18,7 +18,7 @@
                 <input type="text" name="reg_name" id="reg_name" placeholder="Name" autocomplete="off">
                 <input type="email" name="reg_email" id="reg_email" placeholder="Email" autocomplete="off">
                 <input type="password" name="reg_password" id="reg_password" placeholder="Password" autocomplete="off">
-                <button class="register">SignUp</button>
+                <button class="register" id="register">SignUp</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -85,7 +85,50 @@
             errorPlacement: function(error, element) {
                 error.insertAfter(element);
             }
-
+        });
+        $("#register_form").validate({
+            rules: {
+                "reg_name":{
+                    required: true
+                },
+                "reg_email": {
+                    required: true
+                },
+                "reg_password": {
+                    required: true
+                },
+            },
+            messages: {
+                "reg_name": {
+                    required: "Please enter email"
+                },
+                "reg_email": {
+                    required: "Please enter Password"
+                },
+                "reg_password": {
+                    required: "Please enter Password"
+                },
+            },
+            errorElement: 'div',
+            ignore: ':not(:visible)',
+            errorPlacement: function(error, element) {
+                error.insertAfter(element);
+            }
+        });
+        $("#register").click(function(e){
+            e.preventDefault();
+            if ($("#register_form").valid()) {
+                var name=$("#reg_name").val();
+                var email = $("#reg_email").val();
+                var password = $("#reg_password").val();
+                // console.log(email, password);
+                register(name,email, password);
+                $(this).prop("disabled", true);
+                // add spinner to button
+                $(this).html(
+                    ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
+                );
+            }
         });
         $("#login").click(function(e) {
             e.preventDefault();
@@ -101,6 +144,22 @@
                 );
             }
         });
+
+        function register(name,email, password) {
+            $.ajax({
+                type: "POST",
+                url: "controller/common_controller.php",
+                data: {
+                    name:name.trim(),
+                    email: email.trim(),
+                    password: password.trim(),
+                    Type: "register"
+                },
+                success: function(result) {
+                    location.reload(true);
+                }
+            });
+        }
 
         function login(email, password) {
             $.ajax({

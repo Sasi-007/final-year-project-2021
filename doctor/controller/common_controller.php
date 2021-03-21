@@ -4,13 +4,12 @@ $type = $_REQUEST['Type'];
 session_start();
 
 if($type == 'register'){
-    if($_REQUEST["cat_id"] == ''){
-        $add_category = gosql("INSERT INTO category (restaurant_id,name,description,is_available,createdon,createdby) VALUES ('".RESTAURANT_ID."','".$_REQUEST["catname"]."','".$_REQUEST["catdesc"]."','".$_REQUEST["is_available"]."',now(),'1')");
-    }
+    $password=md5($_REQUEST["password"]);
+        $add_category = gosql("INSERT INTO login (username,password,email) VALUES ('".$_REQUEST["name"]."','".$password."','".$_REQUEST["email"]."')");
  }
 else if($type == 'login'){
     $username = $_REQUEST['email'];
-    $password = $_REQUEST['password'];
+    $password = md5($_REQUEST['password']);
     $check_cnt = return_single("SELECT COUNT(1) as cid FROM login WHERE email = '".$username."'");
     if($check_cnt['cid'] > 0){
         $sfqry = "SELECT * FROM login WHERE email='".$username."' and password='".$password."'";
