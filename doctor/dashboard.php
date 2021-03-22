@@ -4,7 +4,14 @@ include_once('controller/dbconn.php');
 include_once('includes/header.php'); 
 include_once('includes/sidebar.php'); 
 include_once("includes/footer.php");
-$number=20;
+// $number=20;
+$username=ucfirst($_SESSION["name"]);
+$timeOfDay = date('a');
+if($timeOfDay == 'am'){
+    $greeting='Good morning';
+}else{
+    $greeting='Good evening';
+}
 ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <title>Dashboard | Doctor</title>
@@ -35,8 +42,8 @@ $number=20;
                 <div class="col" style="text-align:center;">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Good Morning <span style="font-weight:bold;">Doctor!</span></h5>
-                            <p class="card-text">You have <span class="font-weight-bold"><?php echo $number; ?></span> more patients booking today.
+                            <h5 class="card-title"><?php echo $greeting; ?> <span style="font-weight:bold;"> <?php echo $username; ?> </span></h5>
+                            <p class="card-text">You have <span class="font-weight-bold" id="total-sales"></span> more patients booking today.
                             </p>
                             <a href="schedule.php" class="btn btn-primary">View Schedule</a>
                         </div>
@@ -123,7 +130,7 @@ $(document).ready(function() {
                 Type: "total_sales"
             },
             success: function(result) {
-                console.log(result);
+                // console.log(result);
                 $("#total-sales").html(result);
             }
         });

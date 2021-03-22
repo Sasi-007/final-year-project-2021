@@ -7,6 +7,16 @@ if($type == 'register'){
     $password=md5($_REQUEST["password"]);
         $add_category = gosql("INSERT INTO login (username,password,email) VALUES ('".$_REQUEST["name"]."','".$password."','".$_REQUEST["email"]."')");
  }
+ else if($type=="total_sales"){
+    $start_date=$_REQUEST["starting_date"];
+    $end_date=$_REQUEST["ending_date"];
+    $sel_query=return_single("SELECT sum(price) as price,sum(gst_value) as gst,sum(total_price) as total FROM `orders` WHERE date(createdon) BETWEEN '$start_date' AND '$end_date';");
+    if($sel_query["total"]!=0){
+    echo($sel_query["total"]);
+  }else{
+    echo 0;
+  }
+  }
 else if($type == 'login'){
     $username = $_REQUEST['email'];
     $password = md5($_REQUEST['password']);
