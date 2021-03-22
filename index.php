@@ -23,6 +23,8 @@
     <!-- Main Stylesheet -->
     <link href="assets1/css/style.css" rel="stylesheet">
 
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
 </head>
 
 <body>
