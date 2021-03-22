@@ -53,7 +53,7 @@
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                     </ul>
-                    <a href="patient/index.php" class="btn btn-primary ml-lg-3 primary-shadow">Patient Login</a>
+                    <a href="patient/login.php" class="btn btn-primary ml-lg-3 primary-shadow">Patient Login</a>
                 </div>
             </nav>
         </div>
