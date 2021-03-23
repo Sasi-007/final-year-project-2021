@@ -2,4 +2,4 @@
 
 # Hosted at
 
-https://ecr-final-year-2021.herokuapp.com/signlog.html
+https://ecr-final-year-2021.herokuapp.com/
