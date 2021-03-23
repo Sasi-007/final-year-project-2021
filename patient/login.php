@@ -1,206 +1,110 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Patient Login</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="../assets/images/favicon.ico">
-</head>
-
-<body>
-
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form id="register_form">
-                <h1>Create Account</h1>
-                <div class="social-container">
-                </div>
-                <input type="text" name="reg_name" id="reg_name" placeholder="Name" autocomplete="off">
-                <input type="email" name="reg_email" id="reg_email" placeholder="Email" autocomplete="off">
-                <input type="password" name="reg_password" id="reg_password" placeholder="Password" autocomplete="off">
-                <input type="tel" name="ph_number" id="ph_number" placeholder="Phone Number" autocomplete="off">
-                <input type="number" name="age" id="age" placeholder="Age" autocomplete="off">
-                <select class="custom-select">
-                    <option selected>Select</option>
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
-                </select>
-
-                <button class="register" id="register">SignUp</button>
-            </form>
-        </div>
-        <div class="form-container sign-in-container">
-            <form id="login_form">
-                <span id="invalid_details" class="text-danger"></span>
-                <h1>Sign In</h1>
-                <div class="social-container">
-                </div>
-                <input type="email" name="log_email" id="log_email" placeholder="Email" autocomplete="off">
-                <input type="password" name="log_password" id="log_password" placeholder="Password" autocomplete="off">
-                <a href="#">Forgot Your Password</a>
-
-                <button class="login" id="login">Sign In</button>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Hello!</h1>
-                    <p>Enter your details to get your Electronic Medical Records</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
-                </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Sign in & Sign up Form</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="#" class="sign-in-form">
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" />
             </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" />
+            </div>
+            <input type="submit" value="Login" class="btn solid" />
+            <p class="social-text">Or Sign in with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </form>
+          <form action="#" class="sign-up-form">
+            <h2 class="title">Sign up</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" />
+            </div>
+            <input type="submit" class="btn" value="Sign up" />
+            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </form>
         </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here ?</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+              ex ratione. Aliquid!
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Sign up
+            </button>
+          </div>
+          <img src="./img/log.svg" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              laboriosam ad deleniti.
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <img src="./img/register.svg" class="image" alt="" />
+        </div>
+      </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
-    <script>
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
 
-    signUpButton.addEventListener('click', () => {
-        container.classList.add("right-panel-active");
-    });
-    signInButton.addEventListener('click', () => {
-        container.classList.remove("right-panel-active");
-    });
-    $(document).ready(function() {
-        $("#login_form").validate({
-            rules: {
-                "log_email": {
-                    required: true
-                },
-                "password": {
-                    required: true
-                },
-            },
-            messages: {
-                "email_id": {
-                    required: "Please enter email"
-                },
-                "password": {
-                    required: "Please enter Password"
-                },
-            },
-            errorElement: 'div',
-            ignore: ':not(:visible)',
-            errorPlacement: function(error, element) {
-                error.insertAfter(element);
-            }
-        });
-        $("#register_form").validate({
-            rules: {
-                "reg_name": {
-                    required: true
-                },
-                "reg_email": {
-                    required: true
-                },
-                "reg_password": {
-                    required: true
-                },
-            },
-            messages: {
-                "reg_name": {
-                    required: "Please enter email"
-                },
-                "reg_email": {
-                    required: "Please enter Password"
-                },
-                "reg_password": {
-                    required: "Please enter Password"
-                },
-            },
-            errorElement: 'div',
-            ignore: ':not(:visible)',
-            errorPlacement: function(error, element) {
-                error.insertAfter(element);
-            }
-        });
-        $("#register").click(function(e) {
-            e.preventDefault();
-            if ($("#register_form").valid()) {
-                var name = $("#reg_name").val();
-                var email = $("#reg_email").val();
-                var password = $("#reg_password").val();
-                // console.log(email, password);
-                register(name, email, password);
-                $(this).prop("disabled", true);
-                // add spinner to button
-                $(this).html(
-                    ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
-                );
-            }
-        });
-        $("#login").click(function(e) {
-            e.preventDefault();
-            if ($("#login_form").valid()) {
-                var email = $("#log_email").val();
-                var password = $("#log_password").val();
-                // console.log(email, password);
-                login(email, password);
-                $(this).prop("disabled", true);
-                // add spinner to button
-                $(this).html(
-                    ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
-                );
-            }
-        });
-
-        function register(name, email, password) {
-            $.ajax({
-                type: "POST",
-                url: "controller/common_controller.php",
-                data: {
-                    name: name.trim(),
-                    email: email.trim(),
-                    password: password.trim(),
-                    Type: "register"
-                },
-                success: function(result) {
-                    location.reload(true);
-                }
-            });
-        }
-
-        function login(email, password) {
-            $.ajax({
-                type: "POST",
-                url: "controller/common_controller.php",
-                data: {
-                    email: email.trim(),
-                    password: password.trim(),
-                    Type: "login"
-                },
-                success: function(result) {
-                    //alert(result);
-                    if (result == 1) {
-                        // loginTym(email);
-                        window.location = "dashboard.php";
-                    } else {
-                        $("#invalid_details").html(result);
-                        $('#login').prop("disabled", false);
-                        $("#spinner").hide();
-                        //   add spinner to button
-                        $('#login').html(
-                            ` <span>Log in</span>`
-                        );
-                    }
-                }
-            });
-        }
-    });
-    </script>
-
-
-</body>
-
-
+    <script src="./app.js"></script>
+  </body>
 </html>
