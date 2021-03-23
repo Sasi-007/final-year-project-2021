@@ -15,6 +15,9 @@
         <div class="forms-container">
             <div class="signin-signup">
                 <form class="sign-in-form">
+                    <div style="color:red;">
+                        <span id="invalid_details" class="text-danger"></span>
+                    </div>
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -163,30 +166,30 @@
         $("#register").click(function(e) {
             e.preventDefault();
             // if ($(".register_form").valid()) {
-                var name = $("#reg_name").val();
-                var email = $("#reg_email").val();
-                var password = $("#reg_password").val();
-                console.log(name,email, password);
-                register(name, email, password);
-                $(this).prop("disabled", true);
-                // add spinner to button
-                $(this).html(
-                    ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
-                );
+            var name = $("#reg_name").val();
+            var email = $("#reg_email").val();
+            var password = $("#reg_password").val();
+            console.log(name, email, password);
+            register(name, email, password);
+            $(this).prop("disabled", true);
+            // add spinner to button
+            $(this).html(
+                ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
+            );
             // }
         });
         $("#login").click(function(e) {
             e.preventDefault();
             // if ($(".login_form").valid()) {
-                var email = $("#log_email").val();
-                var password = $("#log_password").val();
-                // console.log(email, password);
-                login(email, password);
-                $(this).prop("disabled", true);
-                // add spinner to button
-                $(this).html(
-                    ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
-                );
+            var email = $("#log_email").val();
+            var password = $("#log_password").val();
+            // console.log(email, password);
+            login(email, password);
+            $(this).prop("disabled", true);
+            // add spinner to button
+            $(this).html(
+                ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
+            );
             // }
         });
 

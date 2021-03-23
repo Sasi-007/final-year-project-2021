@@ -14,9 +14,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./patient_history.php" class=" waves-effect">
+                    <a href="./history.php" class=" waves-effect">
                         <i class="ti-layout-accordion-list"></i>
-                        <span>Patient History</span>
+                        <span>History</span>
                     </a>
                 </li>
                 <li>
