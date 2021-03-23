@@ -24,7 +24,7 @@
         </div>
         <div class="form-container sign-in-container">
             <form id="login_form">
-			<span id="invalid_details" class="text-danger"></span>
+                <span id="invalid_details" class="text-danger"></span>
                 <h1>Sign In</h1>
                 <div class="social-container">
                 </div>
@@ -89,7 +89,7 @@
         });
         $("#register_form").validate({
             rules: {
-                "reg_name":{
+                "reg_name": {
                     required: true
                 },
                 "reg_email": {
@@ -116,14 +116,14 @@
                 error.insertAfter(element);
             }
         });
-        $("#register").click(function(e){
+        $("#register").click(function(e) {
             e.preventDefault();
             if ($("#register_form").valid()) {
-                var name=$("#reg_name").val();
+                var name = $("#reg_name").val();
                 var email = $("#reg_email").val();
                 var password = $("#reg_password").val();
                 // console.log(email, password);
-                register(name,email, password);
+                register(name, email, password);
                 $(this).prop("disabled", true);
                 // add spinner to button
                 $(this).html(
@@ -146,12 +146,12 @@
             }
         });
 
-        function register(name,email, password) {
+        function register(name, email, password) {
             $.ajax({
                 type: "POST",
                 url: "controller/common_controller.php",
                 data: {
-                    name:name.trim(),
+                    name: name.trim(),
                     email: email.trim(),
                     password: password.trim(),
                     Type: "register"

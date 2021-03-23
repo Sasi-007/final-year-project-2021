@@ -5,7 +5,7 @@ session_start();
 
 if($type == 'register'){
     $password=md5($_REQUEST["password"]);
-        $add_category = gosql("INSERT INTO login (username,password,email) VALUES ('".$_REQUEST["name"]."','".$password."','".$_REQUEST["email"]."')");
+        $add_category = gosql("INSERT INTO patient_det (name,password,email) VALUES ('".$_REQUEST["name"]."','".$password."','".$_REQUEST["email"]."')");
  }
  else if($type=="total_sales"){
     $start_date=$_REQUEST["starting_date"];
@@ -20,9 +20,9 @@ if($type == 'register'){
 else if($type == 'login'){
     $username = $_REQUEST['email'];
     $password = md5($_REQUEST['password']);
-    $check_cnt = return_single("SELECT COUNT(1) as cid FROM login WHERE email = '".$username."'");
+    $check_cnt = return_single("SELECT COUNT(1) as cid FROM patient_det WHERE email = '".$username."'");
     if($check_cnt['cid'] > 0){
-        $sfqry = "SELECT * FROM login WHERE email='".$username."' and password='".$password."'";
+        $sfqry = "SELECT * FROM patient_det WHERE email='".$username."' and password='".$password."'";
         $row1 = return_single($sfqry);
         if($row1)
         {

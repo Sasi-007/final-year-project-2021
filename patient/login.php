@@ -14,17 +14,17 @@
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form action="#" class="sign-in-form">
+                <form class="sign-in-form">
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" />
+                        <input type="text" name="log_email" id="log_email" placeholder="Email" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" />
+                        <input type="password" name="log_password" id="log_password" placeholder="Password" />
                     </div>
-                    <input type="submit" value="Login" class="btn solid" />
+                    <input type="submit" id="login" value="Login" class="btn solid" />
                     <p class="social-text">Or Sign in with social platforms</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
@@ -45,17 +45,17 @@
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" />
+                        <input type="text" name="reg_name" id="reg_name" placeholder="Username" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" />
+                        <input type="email" name="reg_email" id="reg_email" placeholder="Email" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" />
+                        <input type="password" name="reg_password" id="reg_password" placeholder="Password" />
                     </div>
-                    <input type="submit" class="btn" value="Sign up" />
+                    <input type="submit" id="register" class="btn" value="Sign up" />
                     <p class="social-text">Or Sign up with social platforms</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
@@ -104,6 +104,136 @@
     </div>
 
     <script src="./app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(".login_form").validate({
+            rules: {
+                "log_email": {
+                    required: true
+                },
+                "log_password": {
+                    required: true
+                },
+            },
+            messages: {
+                "log_email": {
+                    required: "Please enter email"
+                },
+                "log_password": {
+                    required: "Please enter Password"
+                },
+            },
+            errorElement: 'div',
+            ignore: ':not(:visible)',
+            errorPlacement: function(error, element) {
+                error.insertAfter(element);
+            }
+        });
+        $(".register_form").validate({
+            rules: {
+                "reg_name": {
+                    required: true
+                },
+                "reg_email": {
+                    required: true
+                },
+                "reg_password": {
+                    required: true
+                },
+            },
+            messages: {
+                "reg_name": {
+                    required: "Please enter email"
+                },
+                "reg_email": {
+                    required: "Please enter Password"
+                },
+                "reg_password": {
+                    required: "Please enter Password"
+                },
+            },
+            errorElement: 'div',
+            ignore: ':not(:visible)',
+            errorPlacement: function(error, element) {
+                error.insertAfter(element);
+            }
+        });
+        $("#register").click(function(e) {
+            e.preventDefault();
+            // if ($(".register_form").valid()) {
+                var name = $("#reg_name").val();
+                var email = $("#reg_email").val();
+                var password = $("#reg_password").val();
+                console.log(name,email, password);
+                register(name, email, password);
+                $(this).prop("disabled", true);
+                // add spinner to button
+                $(this).html(
+                    ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
+                );
+            // }
+        });
+        $("#login").click(function(e) {
+            e.preventDefault();
+            // if ($(".login_form").valid()) {
+                var email = $("#log_email").val();
+                var password = $("#log_password").val();
+                // console.log(email, password);
+                login(email, password);
+                $(this).prop("disabled", true);
+                // add spinner to button
+                $(this).html(
+                    ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
+                );
+            // }
+        });
+
+        function register(name, email, password) {
+            $.ajax({
+                type: "POST",
+                url: "controller/common_controller.php",
+                data: {
+                    name: name.trim(),
+                    email: email.trim(),
+                    password: password.trim(),
+                    Type: "register"
+                },
+                success: function(result) {
+                    location.reload(true);
+                }
+            });
+        }
+
+        function login(email, password) {
+            $.ajax({
+                type: "POST",
+                url: "controller/common_controller.php",
+                data: {
+                    email: email.trim(),
+                    password: password.trim(),
+                    Type: "login"
+                },
+                success: function(result) {
+                    //alert(result);
+                    if (result == 1) {
+                        // loginTym(email);
+                        window.location = "dashboard.php";
+                    } else {
+                        $("#invalid_details").html(result);
+                        $('#login').prop("disabled", false);
+                        $("#spinner").hide();
+                        //   add spinner to button
+                        $('#login').html(
+                            ` <span>Log in</span>`
+                        );
+                    }
+                }
+            });
+        }
+    });
+    </script>
 </body>
 
 </html>
