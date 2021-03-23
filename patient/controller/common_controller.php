@@ -27,8 +27,12 @@ else if($type == 'login'){
         if($row1)
         {
             $_SESSION["Id"] = $row1["id"];
-            $_SESSION["name"] = $row1["username"];
+            $_SESSION["name"] = $row1["name"];
             $_SESSION["logged_in"] = true;
+            $_SESSION["efficient_data"]=0;
+            if($row1["age"]!='0' || $row1["gender"]!='0' || $row1["ph_number"]!='0' || $row1["height"]!='0' || $row1["weight"]!='0'){
+                $_SESSION["efficient_data"]=1;
+            }
             echo 1;
         }
         else

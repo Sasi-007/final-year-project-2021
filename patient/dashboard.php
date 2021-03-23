@@ -6,6 +6,7 @@ include_once('includes/sidebar.php');
 include_once("includes/footer.php");
 // $number=20;
 $username=ucfirst($_SESSION["name"]);
+$efficient_data=$_SESSION["efficient_data"];
 $timeOfDay = date('a');
 if($timeOfDay == 'am'){
     $greeting='Good morning';
@@ -14,11 +15,11 @@ if($timeOfDay == 'am'){
 }
 ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<title>Dashboard | Doctor</title>
+<title>Dashboard | <?php echo $username;?></title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -26,7 +27,6 @@ if($timeOfDay == 'am'){
             <div class="row align-items-center">
                 <div class="col-sm-6">
                     <div class="page-title-box">
-                        <!-- <h4 class="font-size-18">Dashboard</h4> -->
                         <ol class="breadcrumb mb-0">
                             <!-- <li class="breadcrumb-item active">Welcome to Foox Gro Dashboard</li> -->
                         </ol>
@@ -40,10 +40,17 @@ if($timeOfDay == 'am'){
             </div>
             <div class="row" style="margin-top:10px;">
                 <div class="col" style="text-align:center;">
+                <?php if($efficient_data==0){ ?>
+                    <div class="alert alert-danger" role="alert">
+                        Details Not Updated. Please visit <a href="./account.php">My account</a> to update your details
+                    </div>
+                    <?php } ?>
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $greeting; ?> <span style="font-weight:bold;"> <?php echo $username; ?> </span></h5>
-                            <p class="card-text">You have <span class="font-weight-bold" id="total-sales"></span> more patients booking today.
+                            <h5 class="card-title"><?php echo $greeting; ?> <span style="font-weight:bold;">
+                                    <?php echo $username; ?> </span></h5>
+                            <p class="card-text">You have <span class="font-weight-bold" id="total-sales"></span> more
+                                patients booking today.
                             </p>
                             <a href="schedule.php" class="btn btn-primary">View Schedule</a>
                         </div>
@@ -51,18 +58,18 @@ if($timeOfDay == 'am'){
                 </div>
             </div>
             <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title"><span class="font-weight-bold">Upcoming patients</span></h4>
-                                <div class="table-responsive">
-                                    <div class="live-order-list">
-                                    </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><span class="font-weight-bold">Upcoming patients</span></h4>
+                            <div class="table-responsive">
+                                <div class="live-order-list">
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- end col -->
-                </div>
+                    </div>
+                </div> <!-- end col -->
+            </div>
             <!-- end sample -->
         </div>
         <!-- end row -->

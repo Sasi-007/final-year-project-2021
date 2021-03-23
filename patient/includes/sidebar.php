@@ -26,6 +26,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="./account.php" class="waves-effect">
+                        <i class="ti-user"></i>
+                        <span>My account</span>
+                    </a>
+                </li>
+                <li>
                     <a href="./logout.php" class="waves-effect">
                         <i class="ti-shift-right"></i>
                         <span>Logout</span>
