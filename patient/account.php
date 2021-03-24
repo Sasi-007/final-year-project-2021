@@ -5,13 +5,11 @@ include_once('includes/header.php');
 include_once('includes/sidebar.php'); 
 include_once("includes/footer.php");
 $username=ucfirst($_SESSION["name"]);
+$id=$_SESSION["Id"];
 $email=$_SESSION["email"];
 ?>
 <title>Account | <?php echo $username;?></title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Profile</title>
 <div id="layout-wrapper">
     <div class="main-content">
@@ -27,7 +25,7 @@ $email=$_SESSION["email"];
                             </ol>
                         </div>
                     </div>
-                    <div class="  col-auto float-right ml-auto">
+                    <div class="col-auto float-right ml-auto">
                         <div>
                             <a href="#" class="btn add-btn btn-primary edit_customer" data-toggle="modal"
                                 data-target="#edit_customers"><i class="fa fa-pen"></i> Edit Profile</a>
@@ -82,14 +80,14 @@ $email=$_SESSION["email"];
                                             <td><b>HEIGHT</b></td>
                                             <td><?php if($row["height"]=='0'){print("-");}else{
                                               echo $row["height"];
-                                            } ?> inches
+                                            } ?> feet
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><b>WEIGHT</b></td>
                                             <td><?php if($row["weight"]=='0'){print("-");}else{
                                               echo $row["weight"];
-                                            } ?> inches
+                                            } ?> Kg
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -127,167 +125,75 @@ $email=$_SESSION["email"];
                                                             autocomplete="off" disabled>
                                                     </div>
                                                     <div class="form-group mb-4">
-                                                        <label for="owner_email">Age</label>
-                                                        <input type="number" class="form-control" name="owner_email"
-                                                            id="owner_email" placeholder="Enter Age"
-                                                            autocomplete="off">
+                                                        <label for="age">Age</label>
+                                                        <input type="number" class="form-control" name="age"
+                                                            id="age" placeholder="Enter Age" min="1" max="130" autocomplete="off">
                                                     </div>
                                                     <input type="hidden" name="hidid" id="hidid" class="hidid" />
                                                     <div class="form-group mb-4">
                                                         <label for="zone">Gender</label>
-                                                        <input type="text" class="form-control" name="zone" id="zone"
-                                                            placeholder=" Enter your zone" autocomplete="off">
+                                                        <select id="gender" class="form-control">
+                                                            <option value="0">Select</option>
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group mb-4">
-                                                    <label for="manager_name">Manager Name</label>
-                                                    <input type="text" class="form-control" name="manager_name"
-                                                        id="manager_name" placeholder="Enter manager name"
+                                                    <label for="ph_number">Phone Number</label>
+                                                    <input type="text" class="form-control" name="ph_number"
+                                                        id="ph_number" placeholder="Enter phone number"
                                                         autocomplete="off">
                                                 </div>
                                                 <div class="form-group mb-4">
-                                                    <label for="manager_email">Manager Email</label>
-                                                    <input type="email" class="form-control" name="manager_email"
-                                                        id="manager_email" placeholder="Enter manager email"
-                                                        autocomplete="off">
+                                                    <label for="height">Height</label>
+                                                    <input type="number" class="form-control" name="height" id="height"
+                                                        placeholder="Enter height(feet)" autocomplete="off">
                                                 </div>
                                                 <div class=" password form-group mb-4">
-                                                    <label for="password">Password</label>
-                                                    <input type="password" class="form-control" name="password"
-                                                        id="password" placeholder="Password" autocomplete="off">
+                                                    <label for="weight">Weight</label>
+                                                    <input type="number" class="form-control" name="weight" id="weight"
+                                                        placeholder="Enter weight(Kg s)" autocomplete="off">
                                                 </div>
-                                                <div class="form-group mb-4">
-                                                    <label for="contact_number">Contact number</label>
-                                                    <input type="number" class="form-control" name="contact_number"
-                                                        id="contact_number" placeholder="Contact number"
-                                                        autocomplete="off">
-
-                                                    <span id="phone-availability-status"></span></label>
-                                                    <span id="phone_validate" class="r"></span></label>
-
-
-
-                                                </div>
-                                                <div class="form-group mb-4">
-                                                    <label for="invoice_email">Invoice mail</label>
-                                                    <input type="email" class="form-control" name="invoice_email"
-                                                        id="invoice_email" placeholder="Invoice mail"
-                                                        autocomplete="off">
-                                                </div>
-
-                                                <div class="form-group mb-4">
-                                                    <label for="venture-name">Category</label>
-
-                                                    <div class="form-group mb-4">
-                                                        <div class="input-field">
-                                                            <span id="code-availability-status"></span>
-                                                            <select class="form-control select2" name="category"
-                                                                id="category">
-                                                                <option disabled selected value>Select Category</option>
-                                                                <?php foreach ($get_category as $key => $value) {
-                                                                echo $key;
-                                                                $selected = "";
-                                                                if($get_item_det["category_id"] == $value["id"]){
-                                                                    $selected = "selected";
-                                                                }
-                                                            echo '<option value="'.$value["id"].'" '.$selected.'>'.$value["name"].'</option>';
-                                                            } 
-                                                            // echo '<input type="submit" value="Validate" onclick="return Validate()" />'
-                                                            ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <span class="text-muted"></span>
-                                                </div>
-                                                <div class="form-group mb-4">
-                                                    <label for="margin_rate">Margin rate</label>
-                                                    <input type="text" class="form-control" name="margin_rate"
-                                                        id="margin_rate" placeholder=" Margin rate " autocomplete="off">
-                                                </div>
+                                                <!-- <span id="phone-availability-status"></span></label>
+                                                <span id="phone_validate" class="r"></span></label> -->
                                             </div>
-                                        </div>
-                                        <div id="hide-div" class="form-group row">
-                                            <div class="col-md-12">
+                                            <div class="form-group mb-4">
                                                 <button class="btn btn-primary w-md waves-effect waves-light"
-                                                    id="edit">Edit
+                                                    id="edit_btn">Edit
                                                 </button>
                                             </div>
                                         </div>
                                 </div>
-
+                                <!-- <div id="hide-div" class="form-group row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary w-md waves-effect waves-light" id="edit">Edit
+                                        </button>
+                                    </div>
+                                </div> -->
                             </div>
                         </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
-
     </div>
+
 </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
-    var username = "<?php echo $username ?>"
-    $.ajax({
-        type: "POST",
-        url: "controller/common_controller.php",
-        data: {
-            username: username,
-            Type: "fetch_profile"
-        },
-        success: function(result) {
-            // var res = JSON.parse(result);
-            // if (res != 0) {
-            $(".view_profile").html(result);
-            // console.log(res);
-            // }
-        }
-    });
     $(".edit_customer").click(function() {
-        var username = "<?php echo $username ?>"
-        var userid = "<?php echo $userid ?>"
-        console.log(userid);
+        var userid = "<?php echo $id; ?>";
         call_edit_page(userid);
-
     });
-    $("#edit").click(function() {
-        if ($("#edit").valid()) {
-            var venture_name = $("#venture_name").val();
-            var venture_address = $("#venture_address").val();
-            var brand_name = $("#brand_name").val();
-            var brand_address = $("#brand_address").val();
-            var owner_name = $("#owner_name").val();
-            var owner_email = $("#owner_email").val();
-            var zone = $("#zone").val();
-            var manager_name = $("#manager_name").val();
-            var manager_email = $("#manager_email").val();
-            var password = $("#password").val();
-            var contact_number = $("#contact_number").val();
-            var invoice_email = $("#invoice_email").val();
-            var margin_rate = $("#margin_rate").val();
-            var id = $("#hidid").val();
-            // alert(id);
-            var category = Validate();
-            register(venture_name, venture_address, brand_name, brand_address, owner_name, owner_email,
-                zone, manager_name, manager_email, password, invoice_email, margin_rate,
-                contact_number, category, id);
-
-        }
-    });
-
-    function Validate() {
-        var category = document.getElementById("category");
-        if (category.value == "") {
-            alert("pls enter a value");
-        }
-        return category.value;
-    }
-
-
     function call_edit_page(user_id) {
-        console.log(user_id)
         $.ajax({
             type: "POST",
             url: "controller/common_controller.php",
@@ -296,63 +202,44 @@ $(document).ready(function() {
                 Type: "fetch_customer_details"
             },
             success: function(result) {
-                $("#add_customers").modal("show");
                 var res1 = JSON.parse(result);
-                $("#password").hide();
-                console.log(res1);
-
-                $("#venture_name").val(res1.company_name);
-                $("#venture_address").val(res1.address);
-                $("#brand_name").val(res1.brand_name);
-                $("#brand_address").val(res1.brand_address);
-                $("#owner_name").val(res1.username);
-                $("#owner_email").val(res1.email);
-                $("#zone").val(res1.zone)
-                $("#manager_name").val(res1.manager_name);
-                $("#manager_email").val(res1.manager_mail);
-                //  $("#password").val(res1.password);
-                $("#address").val(res1.address);
-                $("#contact_number").val(res1.phone_number);
-                $("#invoice_email").val(res1.invoice_mail);
-                $("#category").val(res1.category);
-                $("#margin_rate").val(res1.margin_rate);
-                $("#hidid").val(res1.id);
+                $("#age").val(res1.age);
+                $("#gender").val(res1.gender);
+                $("#ph_number").val(res1.ph_number);
+                $("#height").val(res1.height);
+                $("#weight").val(res1.weight);
             }
         });
     }
-
-});
-
-function register(venture_name, venture_address, brand_name, brand_address, owner_name, owner_email, zone,
-    manager_name, manager_email, password, invoice_email, margin_rate, contact_number, category, id) {
-    $.ajax({
-        type: "POST",
-        url: "controller/common_controller.php",
-        data: {
-            venture_name: venture_name.trim(),
-            venture_address: venture_address.trim(),
-            brand_name: brand_name.trim(),
-            brand_address: brand_address.trim(),
-            owner_name: owner_name.trim(),
-            owner_mail: owner_email.trim(),
-            zone: zone.trim(),
-            manager_name: manager_name.trim(),
-            manager_mail: manager_email.trim(),
-            password: password.trim(),
-            invoice_mail: invoice_email.trim(),
-            margin_rate: margin_rate.trim(),
-            phone_number: contact_number.trim(),
-            category: category.trim(),
-            id: id,
-            Type: "edit_profile"
-        },
-        success: function(result) {
-            // $("#myModal").modal("show");
-
-            // setTimeout(function() {
-            window.location.reload();
-            // }, 10000);
-        }
+    $("#edit_btn").click(function(e) {
+        e.preventDefault();
+        var id=<?php echo $id; ?>;
+        var age = $("#age").val();
+        var gender=0;
+        var gender = $("#gender").val();
+        var ph_number = $("#ph_number").val();
+        var height = $("#height").val();
+        var weight = $("#weight").val();
+        register(id,age,gender,ph_number,height,weight);
     });
-}
+
+    function register(id,age,gender,ph_number,height,weight) {
+        $.ajax({
+            type: "POST",
+            url: "controller/common_controller.php",
+            data: {
+                id: id,
+                age:age.trim(),
+                gender:gender,
+                ph_number:ph_number.trim(),
+                height:height.trim(),
+                weight:weight.trim(),
+                Type: "edit_profile"
+            },
+            success: function(result) {
+                window.location.reload();
+            }
+        });
+    }
+});
 </script>

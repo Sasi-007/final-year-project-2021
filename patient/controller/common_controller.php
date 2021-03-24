@@ -6,8 +6,8 @@ session_start();
 if($type == 'register'){
     $password=md5($_REQUEST["password"]);
         $add_category = gosql("INSERT INTO patient_det (name,password,email) VALUES ('".$_REQUEST["name"]."','".$password."','".$_REQUEST["email"]."')");
- }
- else if($type=="total_sales"){
+}
+else if($type=="total_sales"){
     $start_date=$_REQUEST["starting_date"];
     $end_date=$_REQUEST["ending_date"];
     $sel_query=return_single("SELECT sum(price) as price,sum(gst_value) as gst,sum(total_price) as total FROM `orders` WHERE date(createdon) BETWEEN '$start_date' AND '$end_date';");
@@ -16,7 +16,16 @@ if($type == 'register'){
   }else{
     echo 0;
   }
-  }
+}
+else if($type == 'edit_profile'){
+    $update_item = gosql("UPDATE patient_det SET age='".$_REQUEST["age"]."',gender='".$_REQUEST["gender"]."',ph_number='".$_REQUEST["ph_number"]."',height='".$_REQUEST["height"]."',weight='".$_REQUEST["weight"]."' WHERE id='".$_REQUEST["id"]."';");
+}
+else if($type =='fetch_customer_details')
+{
+$id = $_REQUEST["user_id"];
+$fetch_customer = return_single("SELECT * from `patient_det` where id = '".$id."'");
+echo json_encode($fetch_customer);
+}
 else if($type == 'login'){
     $username = $_REQUEST['email'];
     $password = md5($_REQUEST['password']);
@@ -31,7 +40,7 @@ else if($type == 'login'){
             $_SESSION["email"] = $row1["email"];
             $_SESSION["logged_in"] = true;
             $_SESSION["efficient_data"]=0;
-            if($row1["age"]!='0' || $row1["gender"]!='0' || $row1["ph_number"]!='0' || $row1["height"]!='0' || $row1["weight"]!='0'){
+            if($row1["age"]!='0' && $row1["gender"]!='0' && $row1["ph_number"]!='0' && $row1["height"]!='0' && $row1["weight"]!='0'){
                 $_SESSION["efficient_data"]=1;
             }
             echo 1;
