@@ -22,7 +22,7 @@
                 <li>
                     <a href="./schedule.php" class="waves-effect">
                         <i class="ti-layout-grid3"></i>
-                        <span>Schedule</span>
+                        <span>Book My Schedule</span>
                     </a>
                 </li>
                 <li>

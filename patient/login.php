@@ -169,8 +169,15 @@
             var name = $("#reg_name").val();
             var email = $("#reg_email").val();
             var password = $("#reg_password").val();
-            console.log(name, email, password);
-            register(name, email, password);
+            // console.log(name, email, password);
+            var pre_id="PT1000";
+            var currentdate = new Date();
+            var pat_id = pre_id + currentdate.getDate() +
+                (currentdate.getMonth() + 1) +
+                currentdate.getHours() +
+                currentdate.getMinutes() +
+                currentdate.getMilliseconds();
+            register(pat_id,name, email, password);
             $(this).prop("disabled", true);
             // add spinner to button
             $(this).html(
@@ -193,11 +200,12 @@
             // }
         });
 
-        function register(name, email, password) {
+        function register(pat_id,name, email, password) {
             $.ajax({
                 type: "POST",
                 url: "controller/common_controller.php",
                 data: {
+                    pat_id:pat_id.trim(),
                     name: name.trim(),
                     email: email.trim(),
                     password: password.trim(),

@@ -5,7 +5,7 @@ session_start();
 
 if($type == 'register'){
     $password=md5($_REQUEST["password"]);
-        $add_category = gosql("INSERT INTO patient_det (name,password,email) VALUES ('".$_REQUEST["name"]."','".$password."','".$_REQUEST["email"]."')");
+        $add_category = gosql("INSERT INTO patient_det (pat_id,name,password,email) VALUES ('".$_REQUEST["pat_id"]."','".$_REQUEST["name"]."','".$password."','".$_REQUEST["email"]."')");
 }
 else if($type=="total_sales"){
     $start_date=$_REQUEST["starting_date"];
@@ -26,6 +26,11 @@ $id = $_REQUEST["user_id"];
 $fetch_customer = return_single("SELECT * from `patient_det` where id = '".$id."'");
 echo json_encode($fetch_customer);
 }
+else if($type=='patient_req_entry'){
+    $pat_id=$_REQUEST["id"];
+    $insert_entry = gosql("INSERT INTO appointment (pat_id,book_time) VALUES ('".$pat_id."','".$_REQUEST["book_date"]."')");
+    echo $pat_id;
+}
 else if($type == 'login'){
     $username = $_REQUEST['email'];
     $password = md5($_REQUEST['password']);
@@ -36,6 +41,7 @@ else if($type == 'login'){
         if($row1)
         {
             $_SESSION["Id"] = $row1["id"];
+            $_SESSION["pat_id"] = $row1["pat_id"];
             $_SESSION["name"] = $row1["name"];
             $_SESSION["email"] = $row1["email"];
             $_SESSION["logged_in"] = true;
