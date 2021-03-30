@@ -15,14 +15,14 @@ ini_set("display_errors", "Off");
 /* ==============Connects to the DB============================= */
 
 function db_connect() {
-    // $dbhost = 'localhost';
-    // $dbusername = 'root';
-    // $database = 'emr';
-    // $dbuserpassword = '';
-   $dbhost = 'bm5yzmft28ph1gw4zio2-mysql.services.clever-cloud.com';
-   $dbusername = 'ub0kopxjm61lm4z1';
-   $database = 'bm5yzmft28ph1gw4zio2';
-   $dbuserpassword = 'ub0kopxjm61lm4z1';
+    $dbhost = 'localhost';
+    $dbusername = 'root';
+    $database = 'emr';
+    $dbuserpassword = '';
+//    $dbhost = 'bm5yzmft28ph1gw4zio2-mysql.services.clever-cloud.com';
+//    $dbusername = 'ub0kopxjm61lm4z1';
+//    $database = 'bm5yzmft28ph1gw4zio2';
+//    $dbuserpassword = 'ub0kopxjm61lm4z1';
 
     $connection = mysqli_connect($dbhost, $dbusername, $dbuserpassword, $database);
 //  mysql_select_db($database) or die( "Unable to select database");    
