@@ -16,7 +16,61 @@ if($type == 'register'){
   }else{
     echo 0;
   }
-  }
+}
+else if($type=='show_current_list'){
+    $status_common = array("0"=>"Reject","1"=>"Confirm");?>
+    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <!-- <table id="order_datatable" class="table mb-0 table-bordered dt-responsive nowrap"> -->
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>Patient Name</th>
+            <th>Time</th>
+            <th>Appointment Status</th>
+            <th>Edit Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+                $count=1;
+                $sel_query="SELECT patient_det.pat_id AS id,patient_det.name AS name,appointment.book_time AS date_time,appointment.status AS status FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND appointment.status='0' ORDER BY appointment.book_time DESC";
+                $result = return_array($sel_query);
+                foreach($result as $row) {  
+                    //extra
+                    if($row['status']==0){
+                    $status_color='#ffc107';
+                }
+                else if($row['status']==1){
+                    $status_color='darkyellow';
+                }
+                    ?>
+        <tr class="count_row">
+            <td align="center"><?php echo $row["id"]; ?></td>
+            <td align="center"><?php echo $row["name"]; ?></td>
+            <td align="center"><?php
+                $del_date=date_create($row["date_time"]);
+                echo(date_format($del_date,"d/m/Y")); ?></td>
+            <td align="center"><?php
+            $date=$row["date_time"]; 
+            $get_appointment="SELECT count(*) AS get_count FROM appointment WHERE book_time='$date' AND status='1';";
+            $result_appointment=return_single($get_appointment);
+            if($result_appointment["get_count"]=='0'){
+                echo Available;
+            }else{
+                echo UnAvailable;
+            }
+            ?></td>
+            <td id="extraColumn"><a style="background:<?php echo $status_color;?>;"
+                    class="success btn text-white change_live_status" href="javascript:;" id="<?php echo $row["id"]; ?>"
+                    status="<?php echo $row["status"]; ?>"><?php echo $status_common[$row["status"]]; ?></a></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<script src="../assets/js/pages/datatables.init.js"></script>
+<?php   
+}
 else if($type == 'login'){
     $username = $_REQUEST['email'];
     $password = md5($_REQUEST['password']);
@@ -26,9 +80,9 @@ else if($type == 'login'){
         $row1 = return_single($sfqry);
         if($row1)
         {
-            $_SESSION["Id"] = $row1["id"];
-            $_SESSION["name"] = $row1["username"];
-            $_SESSION["logged_in"] = true;
+            $_SESSION["doc"]["Id"] = $row1["id"];
+            $_SESSION["doc"]["name"] = $row1["username"];
+            $_SESSION["doc"]["logged_in"] = true;
             echo 1;
         }
         else

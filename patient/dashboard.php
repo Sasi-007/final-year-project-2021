@@ -5,8 +5,8 @@ include_once('includes/header.php');
 include_once('includes/sidebar.php'); 
 include_once("includes/footer.php");
 // $number=20;
-$username=ucfirst($_SESSION["name"]);
-$efficient_data=$_SESSION["efficient_data"];
+$username=ucfirst($_SESSION["pat"]["name"]);
+$efficient_data=$_SESSION["pat"]["efficient_data"];
 $timeOfDay = date('a');
 if($timeOfDay == 'am'){
     $greeting='Good morning';

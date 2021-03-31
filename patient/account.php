@@ -4,9 +4,9 @@ include_once('controller/dbconn.php');
 include_once('includes/header.php'); 
 include_once('includes/sidebar.php'); 
 include_once("includes/footer.php");
-$username=ucfirst($_SESSION["name"]);
-$id=$_SESSION["Id"];
-$email=$_SESSION["email"];
+$username=ucfirst($_SESSION["pat"]["name"]);
+$id=$_SESSION["pat"]["Id"];
+$email=$_SESSION["pat"]["email"];
 ?>
 <title>Account | <?php echo $username;?></title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

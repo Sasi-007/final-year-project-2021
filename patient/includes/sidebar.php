@@ -1,11 +1,6 @@
-<!-- ========== Left Sidebar Start ========== -->
 <div class="vertical-menu">
-
     <div data-simplebar class="h-100">
-
-        <!--- Sidemenu -->
         <div id="sidebar-menu">
-            <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="sidebar_effect">
                     <a href="./dashboard.php" class="waves-effect">
@@ -26,6 +21,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="./predict.php" class="waves-effect">
+                        <!-- <i class="ti-layout-grid3"></i> -->
+                        <i class="fas fa-viruses"></i>
+                        <span>Disease Prediction</span>
+                    </a>
+                </li>
+                <li>
                     <a href="./account.php" class="waves-effect">
                         <i class="ti-user"></i>
                         <span>My account</span>
@@ -39,16 +41,6 @@
                 </li>
             </ul>
         </div>
-        <!-- Sidebar -->
     </div>
 </div>
-<!-- Left Sidebar End -->
-
-<!-- ============================================================== -->
-<!-- Start right Content here -->
-<!-- ============================================================== -->
-
-<!-- end main content-->
-
-<!-- </div> -->
-<!-- END layout-wrapper -->
+<script src="https://kit.fontawesome.com/7eb66d378c.js" crossorigin="anonymous"></script>

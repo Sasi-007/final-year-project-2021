@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(empty($_SESSION['logged_in'])) {
+if(empty($_SESSION["doc"]['logged_in'])) {
     header('Location:index.php');
     die();
 }
-$username=ucfirst($_SESSION["name"]);
+$username=ucfirst($_SESSION["doc"]["name"]);
 ?>
 <!doctype html>
 <html lang="en">

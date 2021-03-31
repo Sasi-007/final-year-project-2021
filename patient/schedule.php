@@ -4,7 +4,7 @@ include_once('controller/dbconn.php');
 include_once('includes/header.php'); 
 include_once('includes/sidebar.php'); 
 include_once("includes/footer.php");
-$username=ucfirst($_SESSION["name"]);
+$username=ucfirst($_SESSION["pat"]["name"]);
 ?>
 <title>Schedule | <?php echo $username;?></title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -61,7 +61,7 @@ $username=ucfirst($_SESSION["name"]);
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
 $(document).ready(function() {
-  var id="<?php echo $_SESSION["pat_id"];?>";
+  var id="<?php echo $_SESSION["pat"]["pat_id"];?>";
   var todaysDate = new Date();
     var year = todaysDate.getFullYear();  
     var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);
@@ -81,7 +81,7 @@ $(document).ready(function() {
             },
             success: function(result) {
               Toastify({
-                text: "This is a toast",
+                text: "Appointment Booked",
                 backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                 className: "info",
               }).showToast();

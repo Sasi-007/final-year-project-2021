@@ -40,14 +40,14 @@ else if($type == 'login'){
         $row1 = return_single($sfqry);
         if($row1)
         {
-            $_SESSION["Id"] = $row1["id"];
-            $_SESSION["pat_id"] = $row1["pat_id"];
-            $_SESSION["name"] = $row1["name"];
-            $_SESSION["email"] = $row1["email"];
-            $_SESSION["logged_in"] = true;
-            $_SESSION["efficient_data"]=0;
+            $_SESSION["pat"]["Id"] = $row1["id"];
+            $_SESSION["pat"]["pat_id"] = $row1["pat_id"];
+            $_SESSION["pat"]["name"] = $row1["name"];
+            $_SESSION["pat"]["email"] = $row1["email"];
+            $_SESSION["pat"]["logged_in"] = true;
+            $_SESSION["pat"]["efficient_data"]=0;
             if($row1["age"]!='0' && $row1["gender"]!='0' && $row1["ph_number"]!='0' && $row1["height"]!='0' && $row1["weight"]!='0'){
-                $_SESSION["efficient_data"]=1;
+                $_SESSION["pat"]["efficient_data"]=1;
             }
             echo 1;
         }

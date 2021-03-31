@@ -66,10 +66,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center zindex-1">
-                    <h1 class="mb-3">We made your medical<br>
-                        Treatment easy</h1>
-                    <p class="mb-4">Reaching People and Touching Lives Globally as a<br>
-                        Leading Provider of Valued Products.</p>
+                    <h1 class="mb-3">Disease Prediction System for COVID with Electronic Medical Records</h1>
+                    <!-- <h3 class="mb-3">We made your medical<br>
+                        Treatment easy</h3> -->
+                    <p class="mb-4">We made your medical<br>
+                        Treatment easy</p>
                     <a id="contact" href="doctor/index.php" class="btn btn-secondary btn-lg">Doctor Login</a>
                 </div>
             </div>

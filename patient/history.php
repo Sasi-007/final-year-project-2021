@@ -4,7 +4,7 @@ include_once('controller/dbconn.php');
 include_once('includes/header.php'); 
 include_once('includes/sidebar.php'); 
 include_once("includes/footer.php");
-$username=ucfirst($_SESSION["name"]);
+$username=ucfirst($_SESSION["pat"]["name"]);
 ?>
 <title>History | <?php echo $username;?></title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
