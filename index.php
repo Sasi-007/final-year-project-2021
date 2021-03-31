@@ -109,7 +109,13 @@
                 <div class="col-lg-12 mb-100">
                     <p>This is a Final Year Project to develop a Electronic Medical Records for Hospital Management System.
 This application helps us to provide services on time and also accurate solutions for the problems of the organization.</p>
-                    <p>An electronic (digital) collection of medical information about a person that is stored on a computer. An electronic medical record includes information about a patient's health history, such as diagnoses, medicines, tests, allergies, immunizations, and treatment plans.</p>
+                    <p>An electronic (digital) collection of medical information about a person that is stored on a computer. An electronic medical record includes information about a patient's health history, such as diagnoses, medicines, tests, allergies, immunizations, and treatment plans.
+                    <br><br>                    <a class="text-color h5 d-block text-center">Under the Guidance, Project Coordinator of</a> 
+                    <a class="text-color h4 d-block text-center">G. Senthil Kumar, M.C.A,. MPhil., M.B.A., M.E., (Ph.D.,),</a>
+                <a class="text-color h4 d-block text-center">Associate Professor,</a>
+                <a class="text-color h4 d-block text-center">Department of Computer Science and Engineering,</a>
+                <a class="text-color h4 d-block text-center">Panimalar Engineering College,</a>
+                <a class="text-color h4 d-block text-center">Chennai - 600 123.</p></a>
                 </div>
             </div>
         </div>

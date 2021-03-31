@@ -5,7 +5,7 @@
                 © <script>
                 document.write(new Date().getFullYear())
                 </script> CODEIO <span class="d-none d-sm-inline-block"> - Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Batch 6.</span>
+                        class="mdi mdi-heart text-danger"></i> by Batch F8 Under the Guidance of Mr. Senthil Kumar (Assistant Professor)</span>
             </div>
         </div>
     </div>
