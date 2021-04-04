@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
     <title>Patient Login</title>
@@ -212,7 +213,15 @@
                     Type: "register"
                 },
                 success: function(result) {
-                    location.reload(true);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Register Successful',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    setTimeout(function(){ location.reload(true); }, 1500);
+                    // location.reload(true);
                 }
             });
         }
@@ -232,10 +241,15 @@
                         // loginTym(email);
                         window.location = "dashboard.php";
                     } else {
-                        $("#invalid_details").html(result);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Invalid Password!'
+                        })
+                        // $("#invalid_details").html(result);
                         $('#login').prop("disabled", false);
-                        $("#spinner").hide();
-                        //   add spinner to button
+                        // $("#spinner").hide();
+                        // //   add spinner to button
                         $('#login').html(
                             ` <span>Log in</span>`
                         );

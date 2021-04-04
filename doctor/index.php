@@ -5,6 +5,7 @@
     <title>Doctor Login</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
 </head>
 
@@ -157,7 +158,15 @@
                     Type: "register"
                 },
                 success: function(result) {
-                    location.reload(true);
+                    // location.reload(true);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Register Successful',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    setTimeout(function(){ location.reload(true); }, 1500);
                 }
             });
         }
@@ -177,10 +186,15 @@
                         // loginTym(email);
                         window.location = "dashboard.php";
                     } else {
-                        $("#invalid_details").html(result);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Invalid Password!'
+                        })
+                        // $("#invalid_details").html(result);
                         $('#login').prop("disabled", false);
-                        $("#spinner").hide();
-                        //   add spinner to button
+                        // $("#spinner").hide();
+                        // //   add spinner to button
                         $('#login').html(
                             ` <span>Log in</span>`
                         );

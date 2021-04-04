@@ -8,5 +8,5 @@ session_start();
 // destroy the session
 session_destroy();
 unset($_SESSION["Admin"]);
-header("Location:login.php");
+header("Location:index.php");
 ?>
