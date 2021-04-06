@@ -41,7 +41,7 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"><span class="font-weight-bold">Appointment Status</span></h4>
+                            <h4 class="card-title"><span class="font-weight-bold">Appointments</span></h4>
                             <div class="table-responsive">
                                 <div class="live-order-list">
                                 </div>
@@ -61,7 +61,8 @@ $username=ucfirst($_SESSION["pat"]["name"]);
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
 $(document).ready(function() {
-  var id="<?php echo $_SESSION["pat"]["pat_id"];?>";
+    var id="<?php echo $_SESSION["pat"]["pat_id"];?>";
+    show_current_list();
   var todaysDate = new Date();
     var year = todaysDate.getFullYear();  
     var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);
@@ -80,7 +81,8 @@ $(document).ready(function() {
                 Type: "patient_req_entry"
             },
             success: function(result) {
-              Toastify({
+            show_current_list();
+            Toastify({
                 text: "Appointment Booked",
                 backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                 className: "info",
@@ -89,5 +91,19 @@ $(document).ready(function() {
             }
         });
     });
+
+    function show_current_list() {
+        $.ajax({
+            type: "POST",
+            url: "controller/common_controller.php",
+            data: {
+                id:id,
+                Type: "show_patient_appoint_list"
+            },
+            success: function(result) {
+                $(".live-order-list").html(result);
+            }
+        });
+    }
 });
 </script>

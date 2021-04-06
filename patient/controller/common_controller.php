@@ -31,6 +31,54 @@ else if($type=='patient_req_entry'){
     $insert_entry = gosql("INSERT INTO appointment (pat_id,book_time) VALUES ('".$pat_id."','".$_REQUEST["book_date"]."')");
     echo $pat_id;
 }
+else if($type=='show_patient_appoint_list'){
+    $pat_id=$_REQUEST["id"];
+    $status_common = array("0"=>"Reject","1"=>"Confirm");?>
+    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <!-- <table id="order_datatable" class="table mb-0 table-bordered dt-responsive nowrap"> -->
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>Time</th>
+            <th>Appointment Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+                $count=1;
+                $sel_query="SELECT * FROM `appointment` WHERE pat_id='".$pat_id."' ORDER BY appointment.book_time DESC";
+                $result = return_array($sel_query);
+                foreach($result as $row) {  
+                    //extra
+                    if($row['status']==0){
+                    $status_color='#ffc107';
+                }
+                else if($row['status']==1){
+                    $status_color='darkyellow';
+                }
+                    ?>
+        <tr class="count_row">
+            <td align="center"><?php echo $row["pat_id"]; ?></td>
+            <td align="center"><?php
+                $del_date=date_create($row["date_time"]);
+                echo(date_format($del_date,"d/m/Y")); ?></td>
+            <td align="center"><?php
+            if($row["status"]=='0'){
+                echo Waiting;
+            }else if($row["status"]=='1'){
+                echo Accepted;
+            }else if($row["status"]=='2'){
+                echo Rejected;
+            }
+            ?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<script src="../assets/js/pages/datatables.init.js"></script>
+<?php
+}
 else if($type == 'login'){
     $username = $_REQUEST['email'];
     $password = md5($_REQUEST['password']);
