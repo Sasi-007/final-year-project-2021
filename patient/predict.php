@@ -100,26 +100,22 @@ $username=ucfirst($_SESSION["pat"]["name"]);
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h4 class="card-title">COVID-19 Prediction</h4>
-                            <p class="card-title-desc">Use the tab JavaScript plugin—include
-                                it individually or through the compiled <code
-                                    class="highlighter-rouge">bootstrap.js</code>
-                                file—to extend our navigational tabs and pills to create tabbable panes
-                                of local content, even via dropdown menus.</p>
+                            <p class="card-title-desc"><code class="highlighter-rouge">Algorithm Used :</code> CNN<br>
+                            <code class="highlighter-rouge">Accuracy :</code> 91%
+                            </p>
                                 <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#covid_modal"> Predict</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h4 class="card-title">Diabetes Prediction</h4>
-                            <p class="card-title-desc">Use the tab JavaScript plugin—include
-                                it individually or through the compiled <code
-                                    class="highlighter-rouge">bootstrap.js</code>
-                                file—to extend our navigational tabs and pills to create tabbable panes
-                                of local content, even via dropdown menus.</p>
+                            <p class="card-title-desc"><code class="highlighter-rouge">Algorithm Used :</code> Random Forest<br>
+                            <code class="highlighter-rouge">Accuracy :</code> 81%
+                            </p>
                                 <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#diabetes_modal"> Predict</button>
                         </div>
                     </div>
@@ -128,26 +124,24 @@ $username=ucfirst($_SESSION["pat"]["name"]);
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h4 class="card-title">Heart Disease Prediction</h4>
-                            <p class="card-title-desc">Use the tab JavaScript plugin—include
-                                it individually or through the compiled <code
-                                    class="highlighter-rouge">bootstrap.js</code>
-                                file—to extend our navigational tabs and pills to create tabbable panes
-                                of local content, even via dropdown menus.</p>
+                            <p class="card-title-desc">
+                            <code class="highlighter-rouge">Algorithm Used :</code> Random Forest<br>
+                            <code class="highlighter-rouge">Accuracy :</code> 81%
+                            </p>
                                 <button class="btn btn-md btn-primary" id="heart" data-toggle="modal" data-target="#heart_modal"> Predict</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h4 class="card-title">Pneumonia Predection</h4>
-                            <p class="card-title-desc">Use the tab JavaScript plugin—include
-                                it individually or through the compiled <code
-                                    class="highlighter-rouge">bootstrap.js</code>
-                                file—to extend our navigational tabs and pills to create tabbable panes
-                                of local content, even via dropdown menus.</p>
+                            <p class="card-title-desc">
+                            <code class="highlighter-rouge">Algorithm Used :</code> CNN<br>
+                            <code class="highlighter-rouge">Accuracy :</code> 86%
+                            </p>
                                 <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#pneumonia_modal"> Predict</button>
                         </div>
                     </div>
