@@ -33,10 +33,10 @@ else if($type=='patient_req_entry'){
 }
 else if($type=='show_patient_appoint_list'){
     $pat_id=$_REQUEST["id"];
-    $status_common = array("0"=>"Reject","1"=>"Confirm");?>
+    $status_common = array("0"=>"Pending","1"=>"Accepted","2"=>"Rejected");
+    ?>
     <table id="datatable" class="table table-bordered dt-responsive nowrap"
     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-    <!-- <table id="order_datatable" class="table mb-0 table-bordered dt-responsive nowrap"> -->
     <thead>
         <tr>
             <th>Patient ID</th>
@@ -50,28 +50,18 @@ else if($type=='show_patient_appoint_list'){
                 $sel_query="SELECT * FROM `appointment` WHERE pat_id='".$pat_id."' ORDER BY appointment.book_time DESC";
                 $result = return_array($sel_query);
                 foreach($result as $row) {  
-                    //extra
                     if($row['status']==0){
-                    $status_color='#ffc107';
-                }
-                else if($row['status']==1){
-                    $status_color='darkyellow';
-                }
+                        $status_color='#ffc107';
+                    }else if($row['status']==1){
+                        $status_color='#0EB03E';
+                  }else if($row['status']==2){
+                        $status_color='#F7344C';
+                  }
                     ?>
         <tr class="count_row">
             <td align="center"><?php echo $row["pat_id"]; ?></td>
-            <td align="center"><?php
-                $del_date=date_create($row["date_time"]);
-                echo(date_format($del_date,"d/m/Y")); ?></td>
-            <td align="center"><?php
-            if($row["status"]=='0'){
-                echo Waiting;
-            }else if($row["status"]=='1'){
-                echo Accepted;
-            }else if($row["status"]=='2'){
-                echo Rejected;
-            }
-            ?></td>
+            <td align="center"><?php $del_date=date_create($row["book_time"]); echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
+            <td align="center"><a style="background:<?php echo $status_color;?>;" class="success btn text-white change_status"><?php echo $status_common[$row["status"]];?></a></td>
         </tr>
         <?php } ?>
     </tbody>
