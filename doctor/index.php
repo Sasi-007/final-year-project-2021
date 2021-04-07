@@ -119,6 +119,8 @@
         });
         $("#register").click(function(e) {
             e.preventDefault();
+            $("#register").val("Registering...");
+            setTimeout(function(){ 
             if ($("#register_form").valid()) {
                 var name = $("#reg_name").val();
                 var email = $("#reg_email").val();
@@ -131,9 +133,12 @@
                     ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
                 );
             }
+        }, 1500);
         });
         $("#login").click(function(e) {
             e.preventDefault();
+            $("#login").val("Signing In...");
+            setTimeout(function(){ 
             if ($("#login_form").valid()) {
                 var email = $("#log_email").val();
                 var password = $("#log_password").val();
@@ -145,6 +150,7 @@
                     ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
                 );
             }
+        }, 1500);
         });
 
         function register(name, email, password) {
@@ -158,7 +164,6 @@
                     Type: "register"
                 },
                 success: function(result) {
-                    // location.reload(true);
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -181,9 +186,7 @@
                     Type: "login"
                 },
                 success: function(result) {
-                    //alert(result);
                     if (result == 1) {
-                        // loginTym(email);
                         window.location = "dashboard.php";
                     } else {
                         Swal.fire({
@@ -191,13 +194,7 @@
                             title: 'Oops...',
                             text: 'Invalid Password!'
                         })
-                        // $("#invalid_details").html(result);
-                        $('#login').prop("disabled", false);
-                        // $("#spinner").hide();
-                        // //   add spinner to button
-                        $('#login').html(
-                            ` <span>Log in</span>`
-                        );
+                        $("#login").val("SIGN IN");
                     }
                 }
             });
