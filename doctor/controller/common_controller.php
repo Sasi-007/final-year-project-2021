@@ -35,6 +35,7 @@ else if($type=='show_current_list'){
     <tbody>
         <?php
                 $count=1;
+                $is_available=1;
                 $sel_query="SELECT appointment.id,patient_det.pat_id AS pat_id,patient_det.name AS name,appointment.book_time AS date_time,appointment.status AS status FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND appointment.status='0' ORDER BY appointment.book_time DESC";
                 $result = return_array($sel_query);
                 foreach($result as $row) {  
@@ -48,7 +49,7 @@ else if($type=='show_current_list'){
                     ?>
         <tr class="count_row">
             <td align="center"><?php echo $row["pat_id"]; ?></td>
-            <td align="center"><?php echo $row["name"]; ?></td>
+            <td align="center"><?php echo ucfirst($row["name"]); ?></td>
             <td align="center"><?php
                 $del_date=date_create($row["date_time"]);
                 echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
@@ -58,12 +59,19 @@ else if($type=='show_current_list'){
             $result_appointment=return_single($get_appointment);
             if($result_appointment["get_count"]=='0'){
                 echo Available;
+                $is_available=1;
             }else{
                 echo UnAvailable;
+                $is_available=0;
             }
             ?></td>
+            <?php if($is_available==0){ ?>
+                <td id="extraColumn"><a style="background:#0EB03E;"
+                    class="success btn text-white accept_btn" href="javascript:;" id="<?php echo $row["id"]; ?>" disabled><?php echo $status_common[1]; ?></a></td>
+            <?php }else if($is_available==1){ ?>
             <td id="extraColumn"><a style="background:#0EB03E;"
                     class="success btn text-white accept_btn" href="javascript:;" id="<?php echo $row["id"]; ?>"><?php echo $status_common[1]; ?></a></td>
+               <?php } ?>
             <td id="extraColumn"><a style="background:#F7344C;"
                     class="success btn text-white reject_btn" href="javascript:;" id="<?php echo $row["id"]; ?>"><?php echo $status_common[0]; ?></a></td>
         </tr>
