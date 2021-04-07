@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2021 at 09:21 AM
+-- Generation Time: Apr 07, 2021 at 03:16 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `appointment` (
+  `id` int(11) NOT NULL,
   `pat_id` varchar(25) NOT NULL,
   `book_time` datetime NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
@@ -38,10 +39,11 @@ CREATE TABLE `appointment` (
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`pat_id`, `book_time`, `status`) VALUES
-('PT1000641840711', '2021-07-03 10:00:00', 0),
-('PT1000641840711', '2021-04-22 23:42:00', 1),
-('PT1000641840711', '2021-04-22 12:26:00', 0);
+INSERT INTO `appointment` (`id`, `pat_id`, `book_time`, `status`) VALUES
+(16, 'PT1000641840713', '2021-04-23 21:42:00', 2),
+(17, 'PT1000641840711', '2021-05-05 18:47:00', 0),
+(18, 'PT1000641840711', '2021-05-29 18:47:00', 1),
+(19, 'PT1000641840711', '2021-05-24 18:47:00', 0);
 
 -- --------------------------------------------------------
 
@@ -91,11 +93,18 @@ CREATE TABLE `patient_det` (
 --
 
 INSERT INTO `patient_det` (`id`, `pat_id`, `name`, `email`, `password`, `age`, `gender`, `ph_number`, `height`, `weight`) VALUES
-(6, 'PT1000641840711', 'sasi', 'sasi@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 20, 1, '2349234234', 6.40, 56);
+(6, 'PT1000641840711', 'sasi', 'sasi@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 20, 1, '2349234234', 6.40, 56),
+(12, 'PT1000641840713', 'san', 'santy@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0, '0', 0.00, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `login`
@@ -114,16 +123,22 @@ ALTER TABLE `patient_det`
 --
 
 --
+-- AUTO_INCREMENT for table `appointment`
+--
+ALTER TABLE `appointment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `patient_det`
 --
 ALTER TABLE `patient_det`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
