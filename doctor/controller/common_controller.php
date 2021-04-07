@@ -18,16 +18,17 @@ if($type == 'register'){
   }
 }
 else if($type=='show_current_list'){
-    $status_common = array("0"=>"Reject","1"=>"Confirm");?>
+    $status_common = array("0"=>"Reject","1"=>"Accept");
+    // $status_color = array("0"=>"F7344C","1"=>"0EB03E");?>
     <table id="datatable" class="table table-bordered dt-responsive nowrap"
     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-    <!-- <table id="order_datatable" class="table mb-0 table-bordered dt-responsive nowrap"> -->
     <thead>
         <tr>
             <th>Patient ID</th>
             <th>Patient Name</th>
             <th>Time</th>
             <th>Appointment Status</th>
+            <th>Edit Status</th>
             <th>Edit Status</th>
         </tr>
     </thead>
@@ -42,7 +43,7 @@ else if($type=='show_current_list'){
                     $status_color='#ffc107';
                 }
                 else if($row['status']==1){
-                    $status_color='darkyellow';
+                    $status_color='#F7344C';
                 }
                     ?>
         <tr class="count_row">
@@ -50,7 +51,7 @@ else if($type=='show_current_list'){
             <td align="center"><?php echo $row["name"]; ?></td>
             <td align="center"><?php
                 $del_date=date_create($row["date_time"]);
-                echo(date_format($del_date,"d/m/Y")); ?></td>
+                echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
             <td align="center"><?php
             $date=$row["date_time"]; 
             $get_appointment="SELECT count(*) AS get_count FROM appointment WHERE book_time='$date' AND status='1';";
@@ -61,9 +62,10 @@ else if($type=='show_current_list'){
                 echo UnAvailable;
             }
             ?></td>
-            <td id="extraColumn"><a style="background:<?php echo $status_color;?>;"
-                    class="success btn text-white change_live_status" href="javascript:;" id="<?php echo $row["id"]; ?>"
-                    status="<?php echo $row["status"]; ?>"><?php echo $status_common[$row["status"]]; ?></a></td>
+            <td id="extraColumn"><a style="background:#0EB03E;"
+                    class="success btn text-white change_live_status" href="javascript:;" id="<?php echo $row["id"]; ?>"><?php echo $status_common[1]; ?></a></td>
+            <td id="extraColumn"><a style="background:#F7344C;"
+                    class="success btn text-white change_live_status" href="javascript:;" id="<?php echo $row["id"]; ?>"><?php echo $status_common[0]; ?></a></td>
         </tr>
         <?php } ?>
     </tbody>
