@@ -43,7 +43,7 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                             </button>
                         </div>
                         <div class="modal-body text-center">
-                        <iframe src="https://xraydetectioncovid19.herokuapp.com/" width="600" style="border:none;" height="400">
+                        <iframe src="http://127.0.0.1:7132/" width="600" style="border:none;" height="400">
                             </iframe>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                             </button>
                         </div>
                         <div class="modal-body text-center">
-                        <iframe src="http://127.0.0.1:8132/" width="600" style="border:none;" height="400">
+                        <iframe src="http://127.0.0.1:9176/" width="600" style="border:none;" height="400">
                             </iframe>
                         </div>
                     </div>

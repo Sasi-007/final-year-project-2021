@@ -166,11 +166,11 @@
         });
         $("#register").click(function(e) {
             e.preventDefault();
-            // if ($(".register_form").valid()) {
+            $("#register").val("Registering...");
+            setTimeout(function(){ 
             var name = $("#reg_name").val();
             var email = $("#reg_email").val();
             var password = $("#reg_password").val();
-            // console.log(name, email, password);
             var pre_id="PT1000";
             var currentdate = new Date();
             var pat_id = pre_id + currentdate.getDate() +
@@ -180,25 +180,23 @@
                 currentdate.getMilliseconds();
             register(pat_id,name, email, password);
             $(this).prop("disabled", true);
-            // add spinner to button
             $(this).html(
                 ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
             );
-            // }
+        }, 1500);
         });
         $("#login").click(function(e) {
             e.preventDefault();
-            // if ($(".login_form").valid()) {
+            $("#login").val("Signing In...");
+            setTimeout(function(){ 
             var email = $("#log_email").val();
             var password = $("#log_password").val();
-            // console.log(email, password);
             login(email, password);
             $(this).prop("disabled", true);
-            // add spinner to button
             $(this).html(
                 ` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
             );
-            // }
+        }, 1500);
         });
 
         function register(pat_id,name, email, password) {
@@ -221,7 +219,6 @@
                         timer: 1500
                     })
                     setTimeout(function(){ location.reload(true); }, 1500);
-                    // location.reload(true);
                 }
             });
         }
@@ -236,9 +233,7 @@
                     Type: "login"
                 },
                 success: function(result) {
-                    //alert(result);
                     if (result == 1) {
-                        // loginTym(email);
                         window.location = "dashboard.php";
                     } else {
                         Swal.fire({
@@ -246,13 +241,7 @@
                             title: 'Oops...',
                             text: 'Invalid Password!'
                         })
-                        // $("#invalid_details").html(result);
-                        $('#login').prop("disabled", false);
-                        // $("#spinner").hide();
-                        // //   add spinner to button
-                        $('#login').html(
-                            ` <span>Log in</span>`
-                        );
+                        $("#login").val("LOGIN");
                     }
                 }
             });
