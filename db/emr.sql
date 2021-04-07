@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2021 at 03:52 PM
+-- Generation Time: Apr 07, 2021 at 09:21 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -39,14 +39,9 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`pat_id`, `book_time`, `status`) VALUES
-('PT100031322', '2021-04-10 08:30:00', 0),
-('PT100031322', '2021-03-31 06:27:00', 0),
-('PT100031322', '2021-03-31 02:36:00', 0),
-('PT100031322', '2021-03-31 06:34:00', 0),
-('PT100031321', '2021-04-09 09:48:00', 0),
-('PT100031321', '2021-05-01 10:00:00', 0),
-('PT1000313957902', '2021-05-01 10:00:00', 1),
-('PT10003131042621', '2021-03-31 00:42:00', 0);
+('PT1000641840711', '2021-07-03 10:00:00', 0),
+('PT1000641840711', '2021-04-22 23:42:00', 1),
+('PT1000641840711', '2021-04-22 12:26:00', 0);
 
 -- --------------------------------------------------------
 
@@ -66,14 +61,11 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `email`) VALUES
-(1, 'sasi', '81dc9bdb52d04dc20036dbd8313ed055', 'rahd006@gmail.com'),
-(2, 'lokesh', '81dc9bdb52d04dc20036dbd8313ed055', 's.logeshkarthik@gmail.com'),
-(5, 'Harish', '81dc9bdb52d04dc20036dbd8313ed055', 'hari@gmail.com'),
+(1, 'sasi', '81dc9bdb52d04dc20036dbd8313ed055', 'sasi@gmail.com'),
+(2, 'lokesh', '81dc9bdb52d04dc20036dbd8313ed055', 'lokesh@gmail.com'),
 (6, 'santhosh', '81dc9bdb52d04dc20036dbd8313ed055', 'san@gmail.com'),
 (7, 'saravana', '81dc9bdb52d04dc20036dbd8313ed055', 'sk@gmail.com'),
-(8, 'Vignesh', '81dc9bdb52d04dc20036dbd8313ed055', 'viki@gmail.com'),
-(9, 'Lokesh', '81dc9bdb52d04dc20036dbd8313ed055', 'loki@gmail.com'),
-(10, 'Vigneshkumar', '81dc9bdb52d04dc20036dbd8313ed055', 'vignesh@gmail.com');
+(8, 'Vignesh', '81dc9bdb52d04dc20036dbd8313ed055', 'viki@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -99,10 +91,7 @@ CREATE TABLE `patient_det` (
 --
 
 INSERT INTO `patient_det` (`id`, `pat_id`, `name`, `email`, `password`, `age`, `gender`, `ph_number`, `height`, `weight`) VALUES
-(1, 'PT100031321', 'demo', 'demo@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 20, 1, '907947932', 4.50, 76),
-(2, 'PT100031322', 'lokesh', 'loki@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 13, 1, '977492370', 7.50, 56),
-(3, 'PT1000313957902', 'test', 'test@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0, '0', 0.00, 0),
-(4, 'PT10003131042621', 'Saravanan', 'sk18@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0, '0', 0.00, 0);
+(6, 'PT1000641840711', 'sasi', 'sasi@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 20, 1, '2349234234', 6.40, 56);
 
 --
 -- Indexes for dumped tables
@@ -128,13 +117,13 @@ ALTER TABLE `patient_det`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `patient_det`
 --
 ALTER TABLE `patient_det`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
