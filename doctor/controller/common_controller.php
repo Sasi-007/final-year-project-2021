@@ -35,7 +35,7 @@ else if($type=='show_current_list'){
     <tbody>
         <?php
                 $count=1;
-                $sel_query="SELECT patient_det.pat_id AS id,patient_det.name AS name,appointment.book_time AS date_time,appointment.status AS status FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND appointment.status='0' ORDER BY appointment.book_time DESC";
+                $sel_query="SELECT appointment.id,patient_det.pat_id AS pat_id,patient_det.name AS name,appointment.book_time AS date_time,appointment.status AS status FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND appointment.status='0' ORDER BY appointment.book_time DESC";
                 $result = return_array($sel_query);
                 foreach($result as $row) {  
                     //extra
@@ -47,7 +47,7 @@ else if($type=='show_current_list'){
                 }
                     ?>
         <tr class="count_row">
-            <td align="center"><?php echo $row["id"]; ?></td>
+            <td align="center"><?php echo $row["pat_id"]; ?></td>
             <td align="center"><?php echo $row["name"]; ?></td>
             <td align="center"><?php
                 $del_date=date_create($row["date_time"]);
@@ -63,15 +63,20 @@ else if($type=='show_current_list'){
             }
             ?></td>
             <td id="extraColumn"><a style="background:#0EB03E;"
-                    class="success btn text-white change_live_status" href="javascript:;" id="<?php echo $row["id"]; ?>"><?php echo $status_common[1]; ?></a></td>
+                    class="success btn text-white accept_btn" href="javascript:;" id="<?php echo $row["id"]; ?>"><?php echo $status_common[1]; ?></a></td>
             <td id="extraColumn"><a style="background:#F7344C;"
-                    class="success btn text-white change_live_status" href="javascript:;" id="<?php echo $row["id"]; ?>"><?php echo $status_common[0]; ?></a></td>
+                    class="success btn text-white reject_btn" href="javascript:;" id="<?php echo $row["id"]; ?>"><?php echo $status_common[0]; ?></a></td>
         </tr>
         <?php } ?>
     </tbody>
 </table>
 <script src="../assets/js/pages/datatables.init.js"></script>
 <?php   
+}
+else if($type == 'change_appointment'){
+    $id=$_REQUEST['appointment_id'];
+    $status=$_REQUEST['status'];
+    $query=gosql("UPDATE `appointment` SET `status` = '".$status."' WHERE `appointment`.`id` = '".$id."';");
 }
 else if($type == 'login'){
     $username = $_REQUEST['email'];

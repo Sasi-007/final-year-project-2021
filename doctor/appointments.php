@@ -108,11 +108,12 @@ include_once("includes/footer.php");
     <!-- end main content-->
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
+$(document).ready(function() {
+    show_current_list();
+    setInterval(function() {
         show_current_list();
-    });
+    }, 4500);
 
-    
     function show_current_list() {
         $.ajax({
             type: "POST",
@@ -125,4 +126,32 @@ include_once("includes/footer.php");
             }
         });
     }
+
+    $(document).on("click", ".accept_btn", function() {
+        var status = 1;
+        var appointment_id = $(this).attr("id");
+        change_status(appointment_id, status);
+    });
+
+    $(document).on("click", ".reject_btn", function() {
+        var status = 2;
+        var appointment_id = $(this).attr("id");
+        change_status(appointment_id, status);
+    });
+
+    function change_status(appointment_id, status) {
+        $.ajax({
+            type: "POST",
+            url: "controller/common_controller.php",
+            data: {
+                status: status,
+                appointment_id: appointment_id,
+                Type: "change_appointment"
+            },
+            success: function(result) {
+                show_current_list();
+            }
+        });
+    }
+});
 </script>

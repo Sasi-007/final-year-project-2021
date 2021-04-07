@@ -30,7 +30,8 @@ $username=ucfirst($_SESSION["pat"]["name"]);
                         <div class="card-body">
                             <h5 class="card-title"><span style="font-weight:bold;">
                                     Book Appointment</span></h5>
-                            <p class="card-text">                                                <input class="form-control" type="datetime-local" id="book_date" name="book_date">
+                            <p class="card-text"> <input class="form-control" type="datetime-local" id="book_date"
+                                    name="book_date">
                             </p>
                             <button class="btn btn-primary" id="req">Send Request</button>
                         </div>
@@ -61,33 +62,38 @@ $username=ucfirst($_SESSION["pat"]["name"]);
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
 $(document).ready(function() {
-    var id="<?php echo $_SESSION["pat"]["pat_id"];?>";
+    var id = "<?php echo $_SESSION["pat"]["pat_id"];?>";
     show_current_list();
-  var todaysDate = new Date();
-    var year = todaysDate.getFullYear();  
+    setInterval(function() {
+        show_current_list();
+    }, 4500);
+    var todaysDate = new Date();
+    var year = todaysDate.getFullYear();
     var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);
-    var day = ("0" + todaysDate.getDate()).slice(-2); 
-    var minDate = (year +"-"+ month +"-"+ day +"T08:30");
-    $("#book_date").attr('min',minDate);
-    
+    var day = ("0" + todaysDate.getDate()).slice(-2);
+    var minDate = (year + "-" + month + "-" + day + "T08:30");
+    $("#book_date").attr('min', minDate);
+
     $(document).on("click", "#req", function() {
-      var book_date=$("#book_date").val();
-      $.ajax({
+        var book_date = $("#book_date").val();
+        $.ajax({
             type: "POST",
             url: "controller/common_controller.php",
             data: {
                 book_date: book_date,
-                id:id,
+                id: id,
                 Type: "patient_req_entry"
             },
             success: function(result) {
-            show_current_list();
-            Toastify({
-                text: "Appointment Booked",
-                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                className: "info",
-              }).showToast();
-              setTimeout(function(){ location.reload(true); }, 1500);
+                show_current_list();
+                Toastify({
+                    text: "Appointment Booked",
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                    className: "info",
+                }).showToast();
+                // setTimeout(function() {
+                //     location.reload(true);
+                // }, 1500);
             }
         });
     });
@@ -97,7 +103,7 @@ $(document).ready(function() {
             type: "POST",
             url: "controller/common_controller.php",
             data: {
-                id:id,
+                id: id,
                 Type: "show_patient_appoint_list"
             },
             success: function(result) {
