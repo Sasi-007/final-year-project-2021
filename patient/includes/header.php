@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(empty($_SESSION["pat"]['logged_in'])) {
-    header('Location:login.php');
+    header('Location:index.php');
     die();
 }
 $username=ucfirst($_SESSION["pat"]["name"]);
