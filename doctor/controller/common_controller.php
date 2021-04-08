@@ -17,6 +17,46 @@ if($type == 'register'){
     echo 0;
   }
 }
+else if($type=='show_patient_history'){
+    $status_common = array("0"=>"Reject","1"=>"Accept");
+    // $status_color = array("0"=>"F7344C","1"=>"0EB03E");?>
+    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>Patient Name</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+                $count=1;
+                $is_available=1;
+                $sel_query="SELECT appointment.id,patient_det.pat_id,patient_det.name AS name,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND book_time < CURDATE() ORDER BY appointment.book_time DESC";
+                $result = return_array($sel_query);
+                foreach($result as $row) {  
+                    //extra
+                    if($row['status']==0){
+                    $status_color='#ffc107';
+                }
+                else if($row['status']==1){
+                    $status_color='#F7344C';
+                }
+                    ?>
+        <tr class="count_row">
+            <td align="center"><?php echo $row["pat_id"]; ?></td>
+            <td align="center"><?php echo ucfirst($row["name"]); ?></td>
+            <td align="center"><?php
+                $del_date=date_create($row["date_time"]);
+                echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<script src="../assets/js/pages/datatables.init.js"></script>
+<?php
+}
 else if($type=='show_current_list'){
     $status_common = array("0"=>"Reject","1"=>"Accept");
     // $status_color = array("0"=>"F7344C","1"=>"0EB03E");?>

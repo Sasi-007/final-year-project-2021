@@ -16,7 +16,7 @@ include_once("includes/footer.php");
                         <div class="page-title-box">
                         </div>
                     </div>
-                    <div class="  col-auto float-right ml-auto">
+                    <div class="col-auto float-right ml-auto">
                     </div>
                 </div>
                 <!-- end page title -->
@@ -40,44 +40,17 @@ include_once("includes/footer.php");
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
-    show_current_list();
+    show_patient_history();
 
-    function show_current_list() {
+    function show_patient_history() {
         $.ajax({
             type: "POST",
             url: "controller/common_controller.php",
             data: {
-                Type: "show_current_list"
+                Type: "show_patient_history"
             },
             success: function(result) {
                 $(".live-order-list").html(result);
-            }
-        });
-    }
-
-    $(document).on("click", ".accept_btn", function() {
-        var status = 1;
-        var appointment_id = $(this).attr("id");
-        change_status(appointment_id, status);
-    });
-
-    $(document).on("click", ".reject_btn", function() {
-        var status = 2;
-        var appointment_id = $(this).attr("id");
-        change_status(appointment_id, status);
-    });
-
-    function change_status(appointment_id, status) {
-        $.ajax({
-            type: "POST",
-            url: "controller/common_controller.php",
-            data: {
-                status: status,
-                appointment_id: appointment_id,
-                Type: "change_appointment"
-            },
-            success: function(result) {
-                show_current_list();
             }
         });
     }

@@ -91,6 +91,7 @@ $(document).ready(function() {
                     backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                     className: "info",
                 }).showToast();
+                $("#book_date").val("");
                 // setTimeout(function() {
                 //     location.reload(true);
                 // }, 1500);
