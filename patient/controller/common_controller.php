@@ -26,6 +26,35 @@ $id = $_REQUEST["user_id"];
 $fetch_customer = return_single("SELECT * from `patient_det` where id = '".$id."'");
 echo json_encode($fetch_customer);
 }
+else if($type=='show_patient_history'){
+    $pat_id=$_REQUEST["pat_id"];?>
+    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>Patient Name</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+                $sel_query="SELECT appointment.id,patient_det.pat_id,patient_det.name AS name,appointment.book_time AS date_time FROM `appointment`,`patient_det` WHERE patient_det.pat_id=appointment.pat_id AND book_time < CURDATE() AND appointment.pat_id='".$pat_id."' ORDER BY appointment.book_time DESC";
+                $result = return_array($sel_query);
+                foreach($result as $row) {?>
+        <tr class="count_row">
+            <td align="center"><?php echo $row["pat_id"]; ?></td>
+            <td align="center"><?php echo ucfirst($row["name"]); ?></td>
+            <td align="center"><?php
+                $del_date=date_create($row["date_time"]);
+                echo(date_format($del_date,"d/m/Y :: h:m:s")); ?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<script src="../assets/js/pages/datatables.init.js"></script>
+<?php
+}
 else if($type=='patient_req_entry'){
     $pat_id=$_REQUEST["id"];
     $insert_entry = gosql("INSERT INTO appointment (pat_id,book_time) VALUES ('".$pat_id."','".$_REQUEST["book_date"]."')");
